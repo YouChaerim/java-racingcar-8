@@ -22,9 +22,13 @@ public class Cars {
         Set<String> uniqueNames = new HashSet<>();
 
         for (String name : parts) {
-            if (hasDuplicateName(uniqueNames, name)) {
-                throw new IllegalArgumentException("자동차 이름에 중복된 값이 있습니다.");
-            }
+            validateUniqueName(uniqueNames, name);
+        }
+    }
+
+    private void validateUniqueName(Set<String> uniqueNames, String name) {
+        if (hasDuplicateName(uniqueNames, name)) {
+            throw new IllegalArgumentException("자동차 이름에 중복된 값이 있습니다.");
         }
     }
 
@@ -42,9 +46,13 @@ public class Cars {
 
     public void moveCars() {
         for (Car car : cars) {
-            if (RandomGenerator.Movable()) {
-                car.forwardDistance();
-            }
+            moveCarIfRandomlyTriggered(car);
+        }
+    }
+
+    private void moveCarIfRandomlyTriggered(Car car) {
+        if (RandomGenerator.Movable()) {
+            car.forwardDistance();
         }
     }
 
@@ -58,12 +66,18 @@ public class Cars {
 
     public String getWinner() {
         List<String> winner = new ArrayList<>();
+        Integer maxDistance = getMaxDistance();
+
         for (Car car : cars) {
-            if (findMaxDistance(car)) {
-                winner.add(car.getName());
-            }
+            addWinnerIfMaxDistance(winner, car, maxDistance);
         }
         return String.join(COMMA + SPACE, winner);
+    }
+
+    private void addWinnerIfMaxDistance(List<String> winner, Car car, Integer maxDistance) {
+        if (car.getDistance().equals(maxDistance)) {
+            winner.add(car.getName());
+        }
     }
 
     private Integer getMaxDistance() {
@@ -72,9 +86,5 @@ public class Cars {
             maxDistance = Math.max(maxDistance, car.getDistance());
         }
         return maxDistance;
-    }
-
-    private boolean findMaxDistance(Car car) {
-        return car.getDistance().equals(getMaxDistance());
     }
 }
