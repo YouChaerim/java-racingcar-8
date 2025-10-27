@@ -1,7 +1,5 @@
 package racingcar.model;
 
-import static racingcar.constants.Symbol.ZERO;
-
 public class GameRound {
     private final Integer round;
 
@@ -26,7 +24,7 @@ public class GameRound {
     }
 
     private boolean isNotPositive(Integer round) {
-        return round < ZERO;
+        return round < 1;
     }
 
     public Integer getRound() {
