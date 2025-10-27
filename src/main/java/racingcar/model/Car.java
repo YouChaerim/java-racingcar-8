@@ -1,9 +1,6 @@
 package racingcar.model;
 
-import static racingcar.constants.Symbol.COLON;
-import static racingcar.constants.Symbol.HYPHEN;
-import static racingcar.constants.Symbol.SPACE;
-import static racingcar.constants.Symbol.ZERO;
+import static racingcar.constants.Symbol.*;
 
 public class Car {
     private final CarName carName;

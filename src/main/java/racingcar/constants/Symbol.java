@@ -5,4 +5,6 @@ public class Symbol {
     public static final String SPACE = " ";
     public static final String HYPHEN = "-";
     public static final Integer ZERO = 0;
+    public static final String NEW_LINE = "\n";
+    public static final String COMMA = ",";
 }
